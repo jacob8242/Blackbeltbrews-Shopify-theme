@@ -39,6 +39,9 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {%- comment -%} Shop Pay Button SDK {%- endcomment -%}
+    <script async src="https://cdn.shopify.com/shopifycloud/shop-js/v1.0/client.js"></script>
+
     {{ content_for_header }}
 
     {%- liquid
