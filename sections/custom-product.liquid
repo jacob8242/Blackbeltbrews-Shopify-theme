@@ -1,0 +1,192 @@
+{{ 'custom-product.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-product-page">
+  <div class="container">
+    <nav class="product-breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a> / 
+      <span class="capitalize">{{ product.type | default: product.vendor }}</span>
+    </nav>
+
+    <div class="product-layout">
+      {%- comment -%} Image Gallery {%- endcomment -%}
+      <div class="product-gallery">
+        <div class="product-main-image">
+          <img 
+            id="product-featured-image"
+            src="{{ product.featured_image | image_url: width: 800 }}" 
+            alt="{{ product.title | escape }}"
+            width="800"
+            height="800"
+          />
+        </div>
+        
+        {%- if product.images.size > 1 -%}
+          <div class="product-thumbnails">
+            {%- for image in product.images limit: 3 -%}
+              <button 
+                class="thumbnail-btn {% if forloop.first %}active{% endif %}"
+                data-image-url="{{ image | image_url: width: 800 }}"
+                aria-label="View image {{ forloop.index }}"
+              >
+                <img src="{{ image | image_url: width: 200 }}" alt="{{ product.title | escape }}" />
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Product Description (below images on mobile/tablet) {%- endcomment -%}
+        <div class="product-description-mobile">
+          {{ product.description }}
+        </div>
+      </div>
+
+      {%- comment -%} Product Details {%- endcomment -%}
+      <div class="product-details">
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        {%- if product.metafields.custom.subtitle -%}
+          <p class="product-subtitle">{{ product.metafields.custom.subtitle }}</p>
+        {%- endif -%}
+
+        {%- comment -%} Star Rating {%- endcomment -%}
+        <div class="product-rating">
+          <div class="stars">
+            {%- liquid
+              assign rating = product.metafields.reviews.rating.value | default: 5
+              assign full_stars = rating | floor
+              assign empty_stars = 5 | minus: full_stars
+            -%}
+            {% for i in (1..full_stars) %}<span class="star">★</span>{% endfor %}
+            {% for i in (1..empty_stars) %}<span class="star empty">★</span>{% endfor %}
+          </div>
+          <span class="review-count">({{ product.metafields.reviews.rating_count | default: 0 }})</span>
+        </div>
+
+        <p class="product-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+
+        {%- comment -%} Product Notes/Tags {%- endcomment -%}
+        {%- if product.tags.size > 0 -%}
+          <div class="product-tags">
+            {%- for tag in product.tags limit: 5 -%}
+              <span class="tag">{{ tag }}</span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Product Form {%- endcomment -%}
+        {%- form 'product', product, id: 'product-form', class: 'product-form-custom' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="product-option">
+                <p class="option-label">{{ option.name }}</p>
+                <div class="option-values">
+                  {%- for value in option.values -%}
+                    <button 
+                      type="button"
+                      class="option-btn {% if forloop.first %}active{% endif %}"
+                      data-option-position="{{ option.position }}"
+                      data-value="{{ value | escape }}"
+                    >
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          {%- comment -%} Purchase Type (One-time vs Subscribe) {%- endcomment -%}
+          <div class="purchase-type">
+            <p class="option-label">Purchase Type</p>
+            <div class="purchase-options">
+              <button type="button" class="purchase-option-btn active" data-purchase-type="onetime">
+                <div class="purchase-option-content">
+                  <span class="purchase-option-title">One Time Purchase</span>
+                </div>
+                <span class="purchase-option-price">{{ product.selected_or_first_available_variant.price | money }}</span>
+              </button>
+              <button type="button" class="purchase-option-btn" data-purchase-type="subscribe">
+                <div class="purchase-option-content">
+                  <span class="purchase-option-title">Subscribe & Save 10%</span>
+                  <p class="purchase-option-desc">Cancel anytime. Ships fresh to your door.</p>
+                </div>
+                <span class="purchase-option-price">
+                  {%- assign subscribe_price = product.selected_or_first_available_variant.price | times: 0.9 -%}
+                  {{ subscribe_price | money }}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {%- comment -%} Quantity and Add to Cart {%- endcomment -%}
+          <div class="product-actions">
+            <div class="quantity-selector">
+              <button type="button" class="qty-btn" data-action="decrease" aria-label="Decrease quantity">-</button>
+              <input type="number" name="quantity" value="1" min="1" class="qty-input" aria-label="Quantity">
+              <button type="button" class="qty-btn" data-action="increase" aria-label="Increase quantity">+</button>
+            </div>
+            
+            <button 
+              type="submit" 
+              name="add"
+              class="add-to-cart-btn"
+              {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+            >
+              {% if product.selected_or_first_available_variant.available %}
+                ADD TO CART
+              {% else %}
+                SOLD OUT
+              {% endif %}
+            </button>
+          </div>
+
+          {%- comment -%} Buy with Shop Button {%- endcomment -%}
+          <div class="shop-pay-wrapper">
+            <shop-pay-button
+              store-url="blackbeltbrews.com"
+              variants="{{ product.selected_or_first_available_variant.id }}"
+            ></shop-pay-button>
+          </div>
+        {%- endform -%}
+
+        {%- comment -%} Product Meta Information {%- endcomment -%}
+        <div class="product-meta">
+          {%- if product.metafields.custom.origin -%}
+            <div class="meta-item">
+              <span class="meta-label">Origin</span>
+              <p class="meta-value">{{ product.metafields.custom.origin }}</p>
+            </div>
+          {%- endif -%}
+          {%- if product.type -%}
+            <div class="meta-item">
+              <span class="meta-label">Type</span>
+              <p class="meta-value">{{ product.type }}</p>
+            </div>
+          {%- endif -%}
+          {%- if product.product_type -%}
+            <div class="meta-item">
+              <span class="meta-label">Category</span>
+              <p class="meta-value capitalize">{{ product.product_type }}</p>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Product Description (desktop only) {%- endcomment -%}
+        <div class="product-description-desktop">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'custom-product.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Custom Product",
+  "settings": []
+}
+{% endschema %}
