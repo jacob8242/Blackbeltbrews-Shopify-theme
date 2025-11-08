@@ -1,231 +1,93 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "slideshow_qUEpwd": {
-      "type": "slideshow",
+    "custom_hero": {
+      "type": "custom-hero",
       "settings": {
-        "layout": "grid",
-        "slide_height": "large",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": false,
-        "accessibility_info": "Slideshow about our brand"
+        "title": "Kickstart Your Day",
+        "subtitle": "With 100% organic roasted coffee, derived from safe plant-based sources.",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all"
       }
     },
-    "slideshow_GrRAQP": {
-      "type": "slideshow",
+    "custom_featured_products": {
+      "type": "custom-featured-products",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "large",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
+        "heading": "Featured Items",
+        "products_to_show": 4
       }
     },
-    "multicolumn_FT7Xxg": {
-      "type": "multicolumn",
+    "custom_brand_features": {
+      "type": "custom-brand-features",
       "blocks": {
-        "column_Hw8xPB": {
-          "type": "column",
+        "feature_1": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/image0.png",
-            "title": "",
-            "text": "<p>At Black Belt Brews, every bag of coffee is roasted fresh only after you place your order—never before. We don’t believe in stale shelves or sitting inventory. Just like the discipline of Taekwondo, our approach is intentional, precise, and rooted in quality. When you brew our coffee, you’re getting beans at their peak—bold, aromatic, and full of life. Freshness isn’t a feature—it’s the foundation.</p>",
-            "link_label": "Gift card",
-            "link": "shopify://products/black-belt-brews-1"
+            "icon": "ri-fire-fill",
+            "text": "100% Roasted Coffee"
           }
         },
-        "column_FBt88V": {
-          "type": "column",
+        "feature_2": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/36979edb-ff5d-40f1-8683-c1f21d48700c.jpg",
-            "title": "12 oz coffee either ground or whole bean $16.99",
-            "text": "<p>As one of our fan favorites, this coffee features tasting notes of toffee, dark chocolate, and citrus, this brew is sure to put a spring in your step and a smile on your face!</p>",
-            "link_label": "Coffee",
-            "link": "shopify://products/black-belt-brews-rock-creek"
+            "icon": "ri-earth-fill",
+            "text": "Sustainably Sourced"
           }
         },
-        "column_PLEPn4": {
-          "type": "column",
+        "feature_3": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/mockup-1_21.png",
-            "title": "K-CUPS $12.99",
-            "text": "<p>Snuggle up with a warm cup <br/>of Broken Top, featuring rich<br/>tasting notes of hazelnut and <br/>caramel. this brew provides comforting flavor profile that is <br/>sure to satisfy you on any cold day  <br/></p>",
-            "link_label": "K-Cups",
-            "link": "shopify://products/black-belt-brews"
+            "icon": "ri-medal-fill",
+            "text": "Dedicated to Quality"
           }
         },
-        "column_7D8L7Q": {
-          "type": "column",
+        "feature_4": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/mockup-1_22.png",
-            "title": "Instant Coffee $8.99",
-            "text": "<p>Experience the rich yet delicate flavor of carefully crafted coffee in a instant.<br/>Every cop captures the distinct<br/>characteristics and nuances of <br/>the beans, delivering a perfect <br/>brew that tastes just as it was intended smooth, aromatic , and satisfying  </p>",
-            "link_label": "Instant Coffee",
-            "link": "shopify://products/black-belt-brews-instant-coffee"
+            "icon": "ri-award-fill",
+            "text": "Certified Quality"
           }
         },
-        "column_G3MB7B": {
-          "type": "column",
+        "feature_5": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/mockup-1_20.png",
-            "title": "Functional Mushroom $20.99",
-            "text": "<p>Featuring organic Lion's Mane and Chaga mushroom powders blended with premium Brazil and Guatemala coffee. Enjoy smooth, sustained energy with cognitive enhancement and immune support—all without the jitters.<br/></p>",
-            "link_label": "Functional Mushroom Coffee",
-            "link": "shopify://products/functional-mushroom"
+            "icon": "ri-leaf-fill",
+            "text": "Organic Coffee"
           }
         },
-        "column_RMcP6L": {
-          "type": "column",
+        "feature_6": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/kraft_blank_final_latest_f5656a62-7196-4196-b6ab-273b07b15c4e.jpg",
-            "title": "3oz Loose Leaf TEA Bag $15.99",
-            "text": "<p>A 3oz (85g) bag of loose leaf tea typically makes 30 to 40 cups of tea — depending on how strong you like it.<br/>Standard brew: Use about 1 teaspoon (2–3g) of tea per 8oz cup</p><p><br/><br/></p>",
-            "link_label": "TEA",
-            "link": "shopify://products/english-breakfast"
-          }
-        },
-        "column_gU3RGG": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2911.png",
-            "title": "",
-            "text": "<p>     “Brew like a master. Focus like a fighter.”</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_fL9RXd": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/image0.png",
-            "title": "Culture",
-            "text": "<p>A coffee-forward brand and experience inspired by the principles of Taekwondo—adapted into daily rituals of brewing, movement, and self-mastery. Each brew represents a belt level, a mindset, and a movement.</p>",
-            "link_label": "",
-            "link": "shopify://blogs/news"
-          }
-        },
-        "column_FmymbP": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0237.jpg",
-            "title": "About me",
-            "text": "<p>Hi, I'm Patrick Lewis, a 5th degree black belt, dedicated Taekwondo practitioner, and coffee entrepreneur based in Delray Beach FL. With a passion for martial arts, I have been actively involved in Taekwondo, honing discipline, focus, and physical fitness. Alongside my martial arts journey, I channel my love for coffee into a thriving business, offering quality beans to fellow enthusiasts.</p><p>If you're interested in martial arts, or just looking for a great bag of coffee, including bean or ground, instant coffee, K-Cup, or mushroom coffee, feel free to connect with me!</p>",
-            "link_label": "",
-            "link": "shopify://blogs/news"
-          }
-        },
-        "column_qW8bKV": {
-          "type": "column",
-          "settings": {
-            "title": "Mission Statement",
-            "text": "<p>At Black Belt Brew, we believe in the power of discipline, community, and a great cup of coffee. Fueled by our love for both coffee and martial arts, we craft high-quality brews that energize warriors on and off the mat. Our mission is to support and strengthen local martial arts schools by reinvesting a portion  of the proceeds from every sale into their programs—helping students of all ages build confidence, resilience, and skill. With every cup, we are brewing strength, one dojo at a time.</p>",
-            "link_label": "",
-            "link": "shopify://blogs/news"
-          }
-        },
-        "column_eX8i9H": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/image0.png",
-            "title": "Meaning of the colors on each logo and belts in Taekwondo",
-            "text": "<p>White - Decaf and Mushroom <br/>Orange and Yellow - Light Roast <br/>Green and Purple-Medium Roast<br/>Blue and Red- Dark Roast </p><p><br/>White belt-  “Pure and without the knowledge of Songahm Taekwondo. As with the Pine Tree, the seed must now be planted and nourished to develop strong roots.”</p><p>Orange belt - “The sun is beginning to rise”</p><p>Yellow belt - “The seed is beginning to see the sunlight.”</p><p>Camo Belt -  “The sapling is hidden amongst the taller pines and must now fight its way upwards.”</p><p>Green belt -  “The pine tree is beginning to develop and grow in strength.”</p><p>Purple belt- “Coming to the mountain. The tree is in mid-growth and now the path becomes steep.”</p><p>Blue belt- “The tree reaches for the sky towards new heights.”</p><p>Brown belt -“The tree is firmly rooted in the earth.”</p><p>Red belt -  “The sun is setting. The first phase of growth has been accomplished.”</p><p>Black Belt - “The tree has reached maturity and has overcome the darkness. It must now begin to ‘plant seeds for the future’</p>",
-            "link_label": "",
-            "link": ""
+            "icon": "ri-archive-fill",
+            "text": "Subscribe & Save"
           }
         }
       },
       "block_order": [
-        "column_Hw8xPB",
-        "column_FBt88V",
-        "column_PLEPn4",
-        "column_7D8L7Q",
-        "column_G3MB7B",
-        "column_RMcP6L",
-        "column_gU3RGG",
-        "column_fL9RXd",
-        "column_FmymbP",
-        "column_qW8bKV",
-        "column_eX8i9H"
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6"
       ],
       "settings": {
-        "title": "",
-        "heading_size": "h0",
-        "image_width": "full",
-        "image_ratio": "circle",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 2,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "background-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 0,
-        "padding_bottom": 72
+        "line1": "Crafted with Dedication.",
+        "line2": "Brewed with Purpose."
       }
     },
-    "rich_text_WRFaGJ": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_qryfbj": {
-          "type": "heading",
-          "settings": {
-            "heading": "Visit Boca ATA Web Site",
-            "heading_size": "h1"
-          }
-        },
-        "text_TMz78z": {
-          "type": "text",
-          "settings": {
-            "text": ""
-          }
-        },
-        "button_Pw3WYr": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": true,
-            "button_label_2": "WWW.BOCAATA.COM",
-            "button_link_2": "https://www.bocaata.com",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading_qryfbj",
-        "text_TMz78z",
-        "button_Pw3WYr"
-      ],
-      "name": "t:sections.rich-text.presets.name",
+    "custom_newsletter": {
+      "type": "custom-newsletter",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "background-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "heading": "Your Journey Starts Here",
+        "description": "Stay in the loop with our latest updates, exclusive content, and special offers. Join our community and never miss a thing.",
+        "button_text": "Subscribe"
       }
     }
   },
   "order": [
-    "slideshow_qUEpwd",
-    "slideshow_GrRAQP",
-    "multicolumn_FT7Xxg",
-    "rich_text_WRFaGJ"
+    "custom_hero",
+    "custom_featured_products",
+    "custom_brand_features",
+    "custom_newsletter"
   ]
 }

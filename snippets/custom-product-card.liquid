@@ -1,0 +1,52 @@
+{%- comment -%}
+  Custom Product Card matching React ProductCard component
+  Renders a product card with image, rating, title, subtitle, price, and add to cart button
+{%- endcomment -%}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card-image-wrapper">
+    <img 
+      src="{{ product.featured_image | image_url: width: 600 }}" 
+      alt="{{ product.title | escape }}"
+      class="product-card-image"
+      loading="lazy"
+      width="600"
+      height="600"
+    />
+  </a>
+  
+  <div class="product-card-content">
+    {%- comment -%} Star Rating {%- endcomment -%}
+    <div class="product-card-rating">
+      {%- liquid
+        assign rating = product.metafields.reviews.rating.value | default: 5
+        assign full_stars = rating | floor
+        assign empty_stars = 5 | minus: full_stars
+      -%}
+      {% for i in (1..full_stars) %}
+        <span class="star">★</span>
+      {% endfor %}
+      {% for i in (1..empty_stars) %}
+        <span class="star empty">★</span>
+      {% endfor %}
+    </div>
+    
+    <h3 class="product-card-title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    
+    {%- if product.metafields.custom.subtitle != blank -%}
+      <p class="product-card-subtitle">{{ product.metafields.custom.subtitle }}</p>
+    {%- else -%}
+      <p class="product-card-subtitle">{{ product.description | strip_html | truncate: 60 }}</p>
+    {%- endif -%}
+    
+    <p class="product-card-price">
+      {{ product.price | money }}
+    </p>
+    
+    <a href="{{ product.url }}" class="product-card-button">
+      ADD TO CART
+    </a>
+  </div>
+</div>

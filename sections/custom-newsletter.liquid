@@ -1,0 +1,100 @@
+{{ 'custom-newsletter.css' | asset_url | stylesheet_tag }}
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-box">
+      <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+      <p class="newsletter-description">{{ section.settings.description }}</p>
+      
+      <div id="newsletter-success" class="newsletter-success" style="display: none;">
+        <p>Thank you for subscribing!</p>
+      </div>
+      
+      <div id="newsletter-form-wrapper">
+        {%- form 'customer', id: 'newsletter-form', class: 'newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-input-group">
+            <input
+              id="newsletter-email"
+              type="email"
+              name="contact[email]"
+              class="newsletter-input"
+              value="{{ form.email }}"
+              placeholder="Enter your email"
+              aria-label="Email address"
+              required
+            >
+            <button 
+              type="submit" 
+              class="newsletter-button"
+            >
+              {{ section.settings.button_text }}
+            </button>
+          </div>
+          {%- if form.errors -%}
+            <div class="newsletter-error">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('newsletter-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      // Check if form was successfully submitted
+      {% if form.posted_successfully? %}
+        const successDiv = document.getElementById('newsletter-success');
+        const formWrapper = document.getElementById('newsletter-form-wrapper');
+        if (successDiv && formWrapper) {
+          formWrapper.style.display = 'none';
+          successDiv.style.display = 'block';
+          
+          // Reset after 3 seconds
+          setTimeout(function() {
+            successDiv.style.display = 'none';
+            formWrapper.style.display = 'block';
+            form.reset();
+          }, 3000);
+        }
+      {% endif %}
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Newsletter Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Journey Starts Here"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Stay in the loop with our latest updates, exclusive content, and special offers. Join our community and never miss a thing."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Section"
+    }
+  ]
+}
+{% endschema %}

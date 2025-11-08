@@ -1,0 +1,68 @@
+/* Brand Features Section */
+
+.brand-features-section {
+  padding: 4rem 0;
+  background-color: #f3f4f6;
+}
+
+.brand-features-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #1f2937;
+  letter-spacing: 0.05em;
+  margin: 0.25rem 0;
+}
+
+@media (min-width: 768px) {
+  .brand-features-title {
+    font-size: 3rem;
+  }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+  background-color: #1f2937;
+  padding: 1.25rem;
+  border-radius: 9999px;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+  color: #374151;
+}
