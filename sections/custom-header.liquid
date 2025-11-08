@@ -1,0 +1,195 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .custom-header-announcement {
+    background-color: {{ section.settings.announcement_bg_color }};
+    color: {{ section.settings.announcement_text_color }};
+  }
+{%- endstyle -%}
+
+{%- comment -%} Top Announcement Bar {%- endcomment -%}
+{% if section.settings.show_announcement %}
+<div class="custom-header-announcement">
+  <div class="container">
+    <div class="announcement-content">
+      <div class="announcement-spacer"></div>
+      <div class="announcement-text">
+        {{ section.settings.announcement_text }}
+      </div>
+      <div class="announcement-social">
+        {% if section.settings.facebook_url != blank %}
+          <a href="{{ section.settings.facebook_url }}" aria-label="Facebook" target="_blank">
+            <i class="ri-facebook-fill"></i>
+          </a>
+        {% endif %}
+        {% if section.settings.instagram_url != blank %}
+          <a href="{{ section.settings.instagram_url }}" aria-label="Instagram" target="_blank">
+            <i class="ri-instagram-fill"></i>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{%- comment -%} Main Header {%- endcomment -%}
+<header class="custom-header sticky-header">
+  <div class="container">
+    <div class="header-grid">
+      {%- comment -%} Logo {%- endcomment -%}
+      <div class="header-logo">
+        <a href="{{ routes.root_url }}" class="logo-link">
+          {% if section.settings.logo != blank %}
+            <img src="{{ section.settings.logo | image_url: width: 200 }}" 
+                 alt="{{ shop.name }}"
+                 width="{{ section.settings.logo_width }}"
+                 height="auto"
+                 class="logo-image">
+          {% else %}
+            <span class="logo-text">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      {%- comment -%} Desktop Navigation {%- endcomment -%}
+      <nav class="header-nav desktop-nav">
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+        {% endfor %}
+      </nav>
+
+      {%- comment -%} Icons {%- endcomment -%}
+      <div class="header-icons">
+        {%- if section.settings.enable_search -%}
+          <button type="button" class="icon-btn" aria-label="Search">
+            <i class="ri-search-line"></i>
+          </button>
+        {%- endif -%}
+        
+        <a href="{{ routes.account_url }}" class="icon-btn" aria-label="Account">
+          <i class="ri-user-line"></i>
+        </a>
+        
+        <a href="{{ routes.cart_url }}" class="icon-btn cart-icon" aria-label="Cart">
+          <i class="ri-shopping-bag-line"></i>
+          <span class="cart-count" id="cart-icon-bubble">
+            {{ cart.item_count }}
+          </span>
+        </a>
+
+        {%- comment -%} Mobile Menu Button {%- endcomment -%}
+        <button type="button" class="icon-btn mobile-menu-btn" aria-label="Menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile Menu {%- endcomment -%}
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-header">
+    <span class="logo-text">{{ shop.name }}</span>
+    <button type="button" class="icon-btn close-menu-btn" aria-label="Close">
+      <i class="ri-close-line"></i>
+    </button>
+  </div>
+  <nav class="mobile-menu-nav">
+    {% for link in section.settings.menu.links %}
+      <a href="{{ link.url }}" class="mobile-nav-link">{{ link.title }}</a>
+    {% endfor %}
+  </nav>
+</div>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+    
+    if (closeMenuBtn) {
+      closeMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $50"
+    },
+    {
+      "type": "color",
+      "id": "announcement_bg_color",
+      "label": "Announcement background color",
+      "default": "#1f2937"
+    },
+    {
+      "type": "color",
+      "id": "announcement_text_color",
+      "label": "Announcement text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 80
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search",
+      "label": "Enable search",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
