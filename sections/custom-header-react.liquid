@@ -1,0 +1,57 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} Announcement Bar - Exact React Header.tsx classes {%- endcomment -%}
+<div class="bg-gray-800 text-white text-xs md:text-sm font-bold p-2 flex justify-between items-center px-4 md:px-8">
+  <div class="flex-1"></div>
+  <div class="text-center">
+    Free shipping on orders over $50
+  </div>
+  <div class="flex-1 flex justify-end items-center gap-3">
+    <a href="https://facebook.com" aria-label="Facebook" class="hover:text-gray-300"><i class="ri-facebook-fill text-lg"></i></a>
+    <a href="https://instagram.com" aria-label="Instagram" class="hover:text-gray-300"><i class="ri-instagram-fill text-lg"></i></a>
+  </div>
+</div>
+
+{%- comment -%} Header - Exact React Header.tsx classes {%- endcomment -%}
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto px-4 md:px-8 py-2 grid grid-cols-3 items-center">
+    <div class="flex justify-start">
+      <a href="/" class="flex items-center gap-2">
+        {%- if section.settings.logo -%}
+          <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" class="h-16 w-16 md:h-20 md:w-20" />
+        {%- else -%}
+          <img src="https://picsum.photos/seed/logo/100/100" alt="Black Belt Brews Logo" class="h-16 w-16 md:h-20 md:w-20" />
+        {%- endif -%}
+      </a>
+    </div>
+    <nav class="hidden md:flex justify-center items-center gap-4 font-bebas text-2xl tracking-wider">
+      <a href="/" class="text-gray-700 hover:text-black">Home</a>
+      <a href="/collections/all" class="text-gray-700 hover:text-black">Shop</a>
+      <a href="/collections/merch" class="text-gray-700 hover:text-black">Merch</a>
+      <a href="/pages/subscriptions" class="text-gray-700 hover:text-black">Subscriptions</a>
+      <a href="/pages/about" class="text-gray-700 hover:text-black">Our Story</a>
+      <a href="/pages/contact" class="text-gray-700 hover:text-black">Connect</a>
+    </nav>
+    <div class="flex justify-end items-center gap-4">
+      <button aria-label="Search" class="text-gray-700 hover:text-black"><i class="ri-search-line text-2xl"></i></button>
+      <a href="/account" aria-label="User Account" class="text-gray-700 hover:text-black"><i class="ri-user-line text-2xl"></i></a>
+      <a href="/cart" aria-label="Shopping Bag" class="text-gray-700 hover:text-black relative">
+        <i class="ri-shopping-bag-line text-2xl"></i>
+        <span class="absolute -top-1 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-sans font-bold" id="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Custom Header React",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}
