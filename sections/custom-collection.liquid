@@ -1,5 +1,6 @@
 {{ 'custom-collection.css' | asset_url | stylesheet_tag }}
 
+{%- paginate collection.products by 24 -%}
 <div class="custom-collection-page">
   <div class="container">
     {%- if section.settings.show_collection_image and collection.image -%}
@@ -22,6 +23,29 @@
     {%- endif -%}
 
     {%- if collection.products.size > 0 -%}
+      {%- comment -%} Product count and sort/filter bar {%- endcomment -%}
+      <div class="collection-toolbar">
+        <div class="collection-product-count">
+          <span class="product-count-text">
+            Showing {{ paginate.current_offset | plus: 1 }}–{{ paginate.current_offset | plus: paginate.page_size | at_most: paginate.items }} of {{ paginate.items }} products
+          </span>
+        </div>
+        
+        <div class="collection-sorting">
+          <label for="SortBy" class="sort-label">Sort by:</label>
+          <select id="SortBy" class="sort-select" onchange="window.location.href=this.value">
+            <option value="?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Featured</option>
+            <option value="?sort_by=best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Best selling</option>
+            <option value="?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>Alphabetically, A-Z</option>
+            <option value="?sort_by=title-descending" {% if collection.sort_by == 'title-descending' %}selected{% endif %}>Alphabetically, Z-A</option>
+            <option value="?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price, low to high</option>
+            <option value="?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price, high to low</option>
+            <option value="?sort_by=created-ascending" {% if collection.sort_by == 'created-ascending' %}selected{% endif %}>Date, old to new</option>
+            <option value="?sort_by=created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Date, new to old</option>
+          </select>
+        </div>
+      </div>
+
       <div class="collection-products">
         {%- for product in collection.products -%}
           {% render 'custom-product-card', product: product %}
@@ -41,6 +65,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endpaginate -%}
 
 {% schema %}
 {

@@ -71,6 +71,65 @@
   margin: 0 auto;
 }
 
+/* Collection Toolbar (Product Count and Sort) */
+.collection-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.collection-product-count {
+  flex: 1;
+}
+
+.product-count-text {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.collection-sorting {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-label {
+  font-size: 0.9375rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.sort-select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.9375rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+
+.sort-select:hover {
+  border-color: #9ca3af;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #1f2937;
+  box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.1);
+}
+
 /* Collection Products Grid */
 .collection-products {
   display: grid;

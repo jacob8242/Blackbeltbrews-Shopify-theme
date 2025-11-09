@@ -121,33 +121,35 @@
           </div>
 
           {%- comment -%} Quantity and Add to Cart {%- endcomment -%}
-          <div class="product-actions">
-            <div class="quantity-selector">
-              <button type="button" class="qty-btn" data-action="decrease" aria-label="Decrease quantity">-</button>
-              <input type="number" name="quantity" value="1" min="1" class="qty-input" aria-label="Quantity">
-              <button type="button" class="qty-btn" data-action="increase" aria-label="Increase quantity">+</button>
+          <div class="product-actions-wrapper">
+            <div class="product-actions">
+              <div class="quantity-selector">
+                <button type="button" class="qty-btn" data-action="decrease" aria-label="Decrease quantity">-</button>
+                <input type="number" name="quantity" value="1" min="1" class="qty-input" aria-label="Quantity">
+                <button type="button" class="qty-btn" data-action="increase" aria-label="Increase quantity">+</button>
+              </div>
+              
+              <button 
+                type="submit" 
+                name="add"
+                class="add-to-cart-btn"
+                {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+              >
+                {% if product.selected_or_first_available_variant.available %}
+                  ADD TO CART
+                {% else %}
+                  SOLD OUT
+                {% endif %}
+              </button>
             </div>
-            
-            <button 
-              type="submit" 
-              name="add"
-              class="add-to-cart-btn"
-              {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
-            >
-              {% if product.selected_or_first_available_variant.available %}
-                ADD TO CART
-              {% else %}
-                SOLD OUT
-              {% endif %}
-            </button>
-          </div>
 
-          {%- comment -%} Buy with Shop Button {%- endcomment -%}
-          <div class="shop-pay-wrapper">
-            <shop-pay-button
-              store-url="blackbeltbrews.com"
-              variants="{{ product.selected_or_first_available_variant.id }}"
-            ></shop-pay-button>
+            {%- comment -%} Buy with Shop Button {%- endcomment -%}
+            <div class="shop-pay-wrapper">
+              <shop-pay-button
+                store-url="blackbeltbrews.com"
+                variants="{{ product.selected_or_first_available_variant.id }}"
+              ></shop-pay-button>
+            </div>
           </div>
         {%- endform -%}
 
