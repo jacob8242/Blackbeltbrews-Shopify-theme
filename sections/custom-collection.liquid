@@ -41,6 +41,15 @@
       </div>
     </div>
 
+    {%- comment -%} Filter Buttons - Exact React classes {%- endcomment -%}
+    <div class="filter-buttons">
+      <span class="filter-label">Filter By:</span>
+      <a href="{{ routes.all_products_collection_url }}" class="filter-btn filter-btn-active">All</a>
+      <a href="/collections/coffee" class="filter-btn">Coffee</a>
+      <a href="/collections/k-cups" class="filter-btn">K-Cups</a>
+      <a href="/collections/tea" class="filter-btn">Tea</a>
+    </div>
+
     {%- comment -%} Product count matching React {%- endcomment -%}
     <p class="collection-product-count">Showing {{ paginate.current_offset | plus: 1 }}–{{ paginate.current_offset | plus: paginate.page_size | at_most: paginate.items }} of {{ paginate.items }} products</p>
 
