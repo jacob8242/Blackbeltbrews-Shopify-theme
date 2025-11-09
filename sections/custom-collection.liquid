@@ -1,82 +1,74 @@
 {{ 'custom-collection.css' | asset_url | stylesheet_tag }}
 
 {%- paginate collection.products by 24 -%}
-<div class="custom-collection-page">
-  <div class="container">
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-header">
-        <img src="{{ collection.image | image_url: width: 1600 }}" alt="{{ collection.title | escape }}" class="collection-image">
-        <div class="collection-header-overlay">
-          <h1 class="collection-title">{{ collection.title }}</h1>
-          {%- if collection.description != blank -%}
-            <p class="collection-description">{{ collection.description }}</p>
-          {%- endif -%}
-        </div>
-      </div>
-    {%- else -%}
-      <div class="collection-header-simple">
-        <h1 class="collection-title">{{ collection.title }}</h1>
-        {%- if collection.description != blank -%}
-          <p class="collection-description">{{ collection.description }}</p>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
-
-    {%- if collection.products.size > 0 -%}
-      {%- comment -%} Product count and sort/filter bar {%- endcomment -%}
-      <div class="collection-toolbar">
-        <div class="collection-product-count">
-          <span class="product-count-text">
-            Showing {{ paginate.current_offset | plus: 1 }}–{{ paginate.current_offset | plus: paginate.page_size | at_most: paginate.items }} of {{ paginate.items }} products
-          </span>
-        </div>
-        
-        <div class="collection-sorting">
-          <label for="SortBy" class="sort-label">Sort by:</label>
-          <select id="SortBy" class="sort-select" onchange="window.location.href=this.value">
-            <option value="?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Featured</option>
-            <option value="?sort_by=best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Best selling</option>
-            <option value="?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>Alphabetically, A-Z</option>
-            <option value="?sort_by=title-descending" {% if collection.sort_by == 'title-descending' %}selected{% endif %}>Alphabetically, Z-A</option>
-            <option value="?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price, low to high</option>
-            <option value="?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price, high to low</option>
-            <option value="?sort_by=created-ascending" {% if collection.sort_by == 'created-ascending' %}selected{% endif %}>Date, old to new</option>
-            <option value="?sort_by=created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Date, new to old</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="collection-products">
-        {%- for product in collection.products -%}
-          {% render 'custom-product-card', product: product %}
-        {%- endfor -%}
-      </div>
-
-      {%- if paginate.pages > 1 -%}
-        <div class="pagination-wrapper">
-          {% render 'pagination', paginate: paginate %}
-        </div>
-      {%- endif -%}
-    {%- else -%}
-      <div class="collection-empty">
-        <p>No products found in this collection.</p>
-        <a href="{{ routes.all_products_collection_url }}" class="btn">Browse All Products</a>
-      </div>
-    {%- endif -%}
+<div class="container mx-auto px-4 md:px-8 py-8">
+  {%- comment -%} Banner matching React ShopPage banner {%- endcomment -%}
+  <div class="collection-banner" style="background-image: url('https://picsum.photos/seed/shop-banner/1200/400');">
+    <div class="collection-banner-content">
+      <h1 class="collection-banner-title">Subscribe & Save</h1>
+      <h3 class="collection-banner-subtitle">Up to 20% off coffee bags & K-Cups</h3>
+      <a href="/pages/subscriptions" class="collection-banner-link">Subscribe Now</a>
+    </div>
   </div>
+
+  {%- comment -%} Collection Title matching React {%- endcomment -%}
+  <h2 class="collection-title">Shop Coffee & Tea</h2>
+
+  {%- if collection.products.size > 0 -%}
+    {%- comment -%} Toolbar matching React gray-800 bar {%- endcomment -%}
+    <div class="collection-toolbar">
+      <div class="collection-sorting">
+        <label for="sort-select" class="sort-label">Sort By:</label>
+        <select 
+          id="sort-select" 
+          class="sort-select" 
+          onchange="window.location.href=this.value"
+        >
+          <option value="?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Popularity</option>
+          <option value="?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+          <option value="?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+          <option value="?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>Name</option>
+        </select>
+      </div>
+      <div class="collection-search">
+        <label for="search-input" class="search-label">Search:</label>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search products..."
+          class="search-input"
+        />
+      </div>
+    </div>
+
+    {%- comment -%} Product count matching React {%- endcomment -%}
+    <p class="collection-product-count">Showing {{ paginate.current_offset | plus: 1 }}–{{ paginate.current_offset | plus: paginate.page_size | at_most: paginate.items }} of {{ paginate.items }} products</p>
+
+    {%- comment -%} Product grid matching React grid {%- endcomment -%}
+    <div class="collection-products">
+      {%- for product in collection.products -%}
+        {% render 'custom-product-card', product: product %}
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <div class="pagination-wrapper">
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="collection-empty">
+      <h3 class="collection-empty-title">No products found</h3>
+      <p class="collection-empty-text">Try adjusting your search or filter criteria.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn">Browse All Products</a>
+    </div>
+  {%- endif -%}
 </div>
 {%- endpaginate -%}
 
 {% schema %}
 {
   "name": "Custom Collection",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "label": "Show collection image",
-      "default": true
-    }
-  ]
+  "settings": []
 }
 {% endschema %}
