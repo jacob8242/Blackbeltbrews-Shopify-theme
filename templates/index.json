@@ -1,0 +1,93 @@
+{
+  "sections": {
+    "custom_hero": {
+      "type": "custom-hero",
+      "settings": {
+        "title": "Kickstart Your Day",
+        "subtitle": "With 100% organic roasted coffee, derived from safe plant-based sources.",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all"
+      }
+    },
+    "custom_featured_products": {
+      "type": "custom-featured-products",
+      "settings": {
+        "heading": "Featured Items",
+        "products_to_show": 4
+      }
+    },
+    "custom_brand_features": {
+      "type": "custom-brand-features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-fire-fill",
+            "text": "100% Roasted Coffee"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-earth-fill",
+            "text": "Sustainably Sourced"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-medal-fill",
+            "text": "Dedicated to Quality"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-award-fill",
+            "text": "Certified Quality"
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-leaf-fill",
+            "text": "Organic Coffee"
+          }
+        },
+        "feature_6": {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-archive-fill",
+            "text": "Subscribe & Save"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6"
+      ],
+      "settings": {
+        "line1": "Crafted with Dedication.",
+        "line2": "Brewed with Purpose."
+      }
+    },
+    "custom_newsletter": {
+      "type": "custom-newsletter",
+      "settings": {
+        "heading": "Your Journey Starts Here",
+        "description": "Stay in the loop with our latest updates, exclusive content, and special offers. Join our community and never miss a thing.",
+        "button_text": "Subscribe"
+      }
+    }
+  },
+  "order": [
+    "custom_hero",
+    "custom_featured_products",
+    "custom_brand_features",
+    "custom_newsletter"
+  ]
+}

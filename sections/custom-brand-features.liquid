@@ -1,0 +1,108 @@
+{{ 'custom-brand-features.css' | asset_url | stylesheet_tag }}
+
+<section class="brand-features-section">
+  <div class="container">
+    <h2 class="brand-features-title">{{ section.settings.line1 }}</h2>
+    <h2 class="brand-features-title">{{ section.settings.line2 }}</h2>
+    
+    <div class="features-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'feature' %}
+          <div class="feature-item" {{ block.shopify_attributes }}>
+            <i class="{{ block.settings.icon }} feature-icon"></i>
+            <span class="feature-text">{{ block.settings.text }}</span>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Features",
+  "settings": [
+    {
+      "type": "text",
+      "id": "line1",
+      "label": "First line",
+      "default": "Crafted with Dedication."
+    },
+    {
+      "type": "text",
+      "id": "line2",
+      "label": "Second line",
+      "default": "Brewed with Purpose."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "RemixIcon class (e.g., ri-fire-fill)",
+          "default": "ri-fire-fill"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Feature text",
+          "default": "100% Roasted Coffee"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-fire-fill",
+            "text": "100% Roasted Coffee"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-earth-fill",
+            "text": "Sustainably Sourced"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-medal-fill",
+            "text": "Dedicated to Quality"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-award-fill",
+            "text": "Certified Quality"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-leaf-fill",
+            "text": "Organic Coffee"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ri-archive-fill",
+            "text": "Subscribe & Save"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,92 @@
+{
+  "type": "footer",
+  "name": "Footer Group",
+  "sections": {
+    "custom_footer": {
+      "type": "custom-footer",
+      "blocks": {
+        "shop_link_1": {
+          "type": "shop_link",
+          "settings": {
+            "text": "Ground Coffee",
+            "link": "/collections/all"
+          }
+        },
+        "shop_link_2": {
+          "type": "shop_link",
+          "settings": {
+            "text": "K-Cups",
+            "link": "/collections/k-cups"
+          }
+        },
+        "shop_link_3": {
+          "type": "shop_link",
+          "settings": {
+            "text": "Tea",
+            "link": "/collections/tea"
+          }
+        },
+        "shop_link_4": {
+          "type": "shop_link",
+          "settings": {
+            "text": "Merch",
+            "link": "/collections/merch"
+          }
+        },
+        "quick_link_1": {
+          "type": "quick_link",
+          "settings": {
+            "text": "Our Story",
+            "link": "/pages/about"
+          }
+        },
+        "quick_link_2": {
+          "type": "quick_link",
+          "settings": {
+            "text": "Connect",
+            "link": "/pages/contact"
+          }
+        },
+        "quick_link_3": {
+          "type": "quick_link",
+          "settings": {
+            "text": "Our Mission",
+            "link": "/pages/about"
+          }
+        },
+        "quick_link_4": {
+          "type": "quick_link",
+          "settings": {
+            "text": "Subscriptions",
+            "link": "/pages/subscriptions"
+          }
+        }
+      },
+      "block_order": [
+        "shop_link_1",
+        "shop_link_2",
+        "shop_link_3",
+        "shop_link_4",
+        "quick_link_1",
+        "quick_link_2",
+        "quick_link_3",
+        "quick_link_4"
+      ],
+      "settings": {
+        "brand_title": "Black Belt Brews",
+        "brand_tagline": "Brew like a master. Focus like a fighter.",
+        "shop_heading": "SHOP",
+        "links_heading": "LINKS",
+        "contact_heading": "CONTACT",
+        "address": "13791 Oneida Dr, Delray Beach, FL 33410",
+        "email": "blackbeltbrews12@gmail.com",
+        "phone": "(561) 945-2520",
+        "enable_follow_on_shop": true,
+        "show_payment_methods": true
+      }
+    }
+  },
+  "order": [
+    "custom_footer"
+  ]
+}

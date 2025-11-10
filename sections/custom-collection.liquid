@@ -1,0 +1,83 @@
+{{ 'custom-collection.css' | asset_url | stylesheet_tag }}
+
+{%- paginate collection.products by 24 -%}
+<div class="container mx-auto px-4 md:px-8 py-8">
+  {%- comment -%} Banner matching React ShopPage banner {%- endcomment -%}
+  <div class="collection-banner" style="background-image: url('https://picsum.photos/seed/shop-banner/1200/400');">
+    <div class="collection-banner-content">
+      <h1 class="collection-banner-title">Subscribe & Save</h1>
+      <h3 class="collection-banner-subtitle">Up to 20% off coffee bags & K-Cups</h3>
+      <a href="/pages/subscriptions" class="collection-banner-link">Subscribe Now</a>
+    </div>
+  </div>
+
+  {%- comment -%} Collection Title matching React {%- endcomment -%}
+  <h2 class="collection-title">Shop Coffee & Tea</h2>
+
+  {%- if collection.products.size > 0 -%}
+    {%- comment -%} Toolbar matching React gray-800 bar {%- endcomment -%}
+    <div class="collection-toolbar">
+      <div class="collection-sorting">
+        <label for="sort-select" class="sort-label">Sort By:</label>
+        <select 
+          id="sort-select" 
+          class="sort-select" 
+          onchange="window.location.href=this.value"
+        >
+          <option value="?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Popularity</option>
+          <option value="?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+          <option value="?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+          <option value="?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>Name</option>
+        </select>
+      </div>
+      <div class="collection-search">
+        <label for="search-input" class="search-label">Search:</label>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search products..."
+          class="search-input"
+        />
+      </div>
+    </div>
+
+    {%- comment -%} Filter Buttons - Exact React classes {%- endcomment -%}
+    <div class="filter-buttons">
+      <span class="filter-label">Filter By:</span>
+      <a href="{{ routes.all_products_collection_url }}" class="filter-btn filter-btn-active">All</a>
+      <a href="/collections/coffee" class="filter-btn">Coffee</a>
+      <a href="/collections/k-cups" class="filter-btn">K-Cups</a>
+      <a href="/collections/tea" class="filter-btn">Tea</a>
+    </div>
+
+    {%- comment -%} Product count matching React {%- endcomment -%}
+    <p class="collection-product-count">Showing {{ paginate.current_offset | plus: 1 }}–{{ paginate.current_offset | plus: paginate.page_size | at_most: paginate.items }} of {{ paginate.items }} products</p>
+
+    {%- comment -%} Product grid matching React grid {%- endcomment -%}
+    <div class="collection-products">
+      {%- for product in collection.products -%}
+        {% render 'custom-product-card', product: product %}
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <div class="pagination-wrapper">
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="collection-empty">
+      <h3 class="collection-empty-title">No products found</h3>
+      <p class="collection-empty-text">Try adjusting your search or filter criteria.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn">Browse All Products</a>
+    </div>
+  {%- endif -%}
+</div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Custom Collection",
+  "settings": []
+}
+{% endschema %}

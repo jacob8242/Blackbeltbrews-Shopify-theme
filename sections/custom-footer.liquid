@@ -1,0 +1,300 @@
+{{ 'custom-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="custom-footer">
+  <div class="container">
+    <div class="footer-grid">
+      {%- comment -%} Brand Column {%- endcomment -%}
+      <div class="footer-brand">
+        <h2 class="footer-brand-title">{{ section.settings.brand_title | default: shop.name }}</h2>
+        <p class="footer-brand-tagline">{{ section.settings.brand_tagline }}</p>
+        <div class="footer-social">
+          {% if section.settings.facebook_url != blank %}
+            <a href="{{ section.settings.facebook_url }}" target="_blank" aria-label="Facebook">
+              <i class="ri-facebook-fill"></i>
+            </a>
+          {% endif %}
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" target="_blank" aria-label="Instagram">
+              <i class="ri-instagram-fill"></i>
+            </a>
+          {% endif %}
+          {% if section.settings.twitter_url != blank %}
+            <a href="{{ section.settings.twitter_url }}" target="_blank" aria-label="Twitter">
+              <i class="ri-twitter-x-fill"></i>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      {%- comment -%} Shop Links {%- endcomment -%}
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.shop_heading | default: "SHOP" }}</h3>
+        <ul class="footer-links">
+          {% for block in section.blocks %}
+            {% if block.type == 'shop_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      {%- comment -%} Quick Links {%- endcomment -%}
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.links_heading | default: "LINKS" }}</h3>
+        <ul class="footer-links">
+          {% for block in section.blocks %}
+            {% if block.type == 'quick_link' %}
+              <li>
+                <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      {%- comment -%} Contact Info {%- endcomment -%}
+      <div class="footer-column">
+        <h3 class="footer-heading">{{ section.settings.contact_heading | default: "CONTACT" }}</h3>
+        <address class="footer-contact">
+          {% if section.settings.address != blank %}
+            <p>{{ section.settings.address }}</p>
+          {% endif %}
+          {% if section.settings.email != blank %}
+            <p><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
+          {% endif %}
+          {% if section.settings.phone != blank %}
+            <p><a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a></p>
+          {% endif %}
+        </address>
+      </div>
+    </div>
+
+    {%- comment -%} Follow on Shop Button {%- endcomment -%}
+    {%- if section.settings.enable_follow_on_shop and shop.features.follow_on_shop? -%}
+      <div class="footer-shop-button">
+        {{ shop | login_button: action: 'follow' }}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Payment Methods {%- endcomment -%}
+    {%- if section.settings.show_payment_methods -%}
+      <div class="footer-payment">
+        <h4 class="footer-payment-heading">Accepted Payment Methods</h4>
+        <ul class="payment-icons">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>
+              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Copyright {%- endcomment -%}
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Section"
+    },
+    {
+      "type": "text",
+      "id": "brand_title",
+      "label": "Brand title",
+      "default": "Black Belt Brews"
+    },
+    {
+      "type": "text",
+      "id": "brand_tagline",
+      "label": "Brand tagline",
+      "default": "Brew like a master. Focus like a fighter."
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "header",
+      "content": "Column Headings"
+    },
+    {
+      "type": "text",
+      "id": "shop_heading",
+      "label": "Shop column heading",
+      "default": "SHOP"
+    },
+    {
+      "type": "text",
+      "id": "links_heading",
+      "label": "Links column heading",
+      "default": "LINKS"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact column heading",
+      "default": "CONTACT"
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "13791 Oneida Dr, Delray Beach, FL 33410"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "blackbeltbrews12@gmail.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "(561) 945-2520"
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "label": "Enable Follow on Shop button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_methods",
+      "label": "Show payment methods",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "shop_link",
+      "name": "Shop Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "quick_link",
+      "name": "Quick Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer",
+      "blocks": [
+        {
+          "type": "shop_link",
+          "settings": {
+            "text": "Ground Coffee",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "shop_link",
+          "settings": {
+            "text": "K-Cups",
+            "link": "/collections/k-cups"
+          }
+        },
+        {
+          "type": "shop_link",
+          "settings": {
+            "text": "Tea",
+            "link": "/collections/tea"
+          }
+        },
+        {
+          "type": "shop_link",
+          "settings": {
+            "text": "Merch",
+            "link": "/collections/merch"
+          }
+        },
+        {
+          "type": "quick_link",
+          "settings": {
+            "text": "Our Story",
+            "link": "/pages/about"
+          }
+        },
+        {
+          "type": "quick_link",
+          "settings": {
+            "text": "Connect",
+            "link": "/pages/contact"
+          }
+        },
+        {
+          "type": "quick_link",
+          "settings": {
+            "text": "Our Mission",
+            "link": "/pages/about"
+          }
+        },
+        {
+          "type": "quick_link",
+          "settings": {
+            "text": "Subscriptions",
+            "link": "/pages/subscriptions"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

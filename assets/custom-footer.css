@@ -1,0 +1,181 @@
+/* Black Belt Brews Custom Footer Styles */
+
+.custom-footer {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Brand Column */
+.footer-brand {
+  grid-column: span 1;
+}
+
+@media (max-width: 767px) {
+  .footer-brand {
+    margin-bottom: 1rem;
+  }
+}
+
+.footer-brand-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.25rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.footer-brand-tagline {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  color: #d1d5db;
+  transition: color 0.2s;
+}
+
+.footer-social a:hover {
+  color: #ffffff;
+}
+
+.footer-social i {
+  font-size: 1.25rem;
+}
+
+/* Footer Columns */
+.footer-column {
+  grid-column: span 1;
+}
+
+.footer-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 0.9375rem;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* Contact Section */
+.footer-contact {
+  font-style: normal;
+  color: #d1d5db;
+  font-size: 0.9375rem;
+}
+
+.footer-contact p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-contact a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+/* Follow on Shop Button */
+.footer-shop-button {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid #374151;
+  border-bottom: 1px solid #374151;
+  margin: 2rem 0;
+}
+
+.footer-shop-button .shopify-follow-on-shop {
+  display: inline-block;
+}
+
+/* Payment Methods */
+.footer-payment {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.footer-payment-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  color: #d1d5db;
+}
+
+.payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.payment-icons li {
+  display: flex;
+  align-items: center;
+}
+
+.payment-icon {
+  height: 2rem;
+  width: auto;
+  max-width: 3rem;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid #374151;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}

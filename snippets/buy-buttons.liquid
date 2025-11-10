@@ -98,6 +98,14 @@
           {%- endif -%}
         </div>
       {%- endform -%}
+
+      {%- comment -%} Buy with Shop Button {%- endcomment -%}
+      <div class="product-form__shop-button">
+        <shop-pay-button
+          store-url="blackbeltbrews.com"
+          variants="{{ product.selected_or_first_available_variant.id }}"
+        ></shop-pay-button>
+      </div>
     </product-form>
   {%- else -%}
     <div class="product-form">

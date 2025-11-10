@@ -1492,3 +1492,14 @@ a.product__text {
     border: none;
   }
 }
+
+/* Buy with Shop Button */
+.product-form__shop-button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.product-form__shop-button shop-pay-button {
+  width: 100%;
+  display: block;
+}
